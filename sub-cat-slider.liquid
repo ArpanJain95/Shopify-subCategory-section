@@ -1,0 +1,123 @@
+<style>
+  .sub-category{
+    width:85%;
+    margin:0 auto;
+  }
+  .content-area{
+    text-align:center;
+    padding:15px 0px;
+  }
+  .content-area img{
+    height:100px;
+    width:100px;
+    margin: 0 auto;
+    object-fit:cover;
+    border-radius:50%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all 0.2s ease-in-out;
+  }
+  .content-area:hover img{
+    transform: scale(1.1);
+  }
+  .content-area a{
+    text-decoration: none;
+  }
+  .content-area h2{
+    font-size: 14px;
+  }
+
+  /* Media Query for Mobile */
+  @media (max-width: 600px) {
+    .content-area img {
+      height: 60px; /* Adjust the height as needed for mobile */
+      width: 60px; /* Adjust the width as needed for mobile */
+    }
+    .content-area h2{
+      font-size: 12px;
+    }
+  }
+  
+</style>
+<link rel="stylesheet" href="http://kenwheeler.github.io/slick/slick/slick.css" type="text/css"/>
+<link rel="stylesheet" href="http://kenwheeler.github.io/slick/slick/slick-theme.css" type="text/css"/>
+<div class="sub-category">
+  {% for block in section.blocks %}
+  <div class="content-area">
+    <a href="{{ block.settings.cat_link }}">
+    <img src="{{ block.settings.cat_img | img_url:'' }}"/>
+    <h2>{{ block.settings.cat_title }}</h2>
+    </a>
+  </div>
+  {% endfor %}
+  
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="http://kenwheeler.github.io/slick/slick/slick.js"></script>
+<script>
+
+  $('.sub-category').slick({
+  infinite: false,
+  speed: 300,
+  slidesToShow: 8,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        infinite: true,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 2
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+  
+</script>
+{% schema %}
+  {
+    "name": "Sub Category Slider",
+    "settings": [],
+    "blocks":[{
+      "name": "Sub Category Slider",
+      "type": "category-slider",
+      "settings":[
+        {
+          "type": "image_picker",
+          "id": "cat_img",
+          "label": "Select Image"
+        },
+        {
+          "type": "text",
+          "id": "cat_title",
+          "label": "Select Title"
+        },
+        {
+          "type": "url",
+          "id": "cat_link",
+          "label": "Select Link"
+        }
+      ]
+    }],
+    "presets":[{
+      "name":"Category Slider"
+    }]
+  }
+{% endschema %}
