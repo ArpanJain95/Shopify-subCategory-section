@@ -1,1 +1,2 @@
 # shopify-subCategory-section
+# This responsive sub-category slider, meticulously crafted with HTML, CSS, and JavaScript, empowers you to showcase product categories in a visually appealing and interactive manner. The slider features a clean layout with circular images and elegant title overlays. Users can seamlessly navigate through the slider, enjoying a smooth and responsive design. Perfect for enhancing your Shopify store's aesthetics and providing an engaging browsing experience for customers.
